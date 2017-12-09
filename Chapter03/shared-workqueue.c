@@ -22,6 +22,7 @@ static void work_handler(struct work_struct *work)
                                  struct work_data, my_work); 
     pr_info("Work queue module handler: %s, data is %d\n", __FUNCTION__, my_data->the_data);
     msleep(3000);
+    sleep++;
     wake_up_interruptible(&my_data->my_wq);
     kfree(my_data);
 }
