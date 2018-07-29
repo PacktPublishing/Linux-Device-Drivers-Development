@@ -116,7 +116,7 @@ static struct platform_driver mypdrv = {
     .remove     = btn_remove,
     .driver     = {
         .name     = "input-button",
-        .of_match_table = of_match_ptr(btn_dt_ids),  
+        .of_match_table = of_match_ptr(btn_dt_ids),
         .owner    = THIS_MODULE,
     },
 };

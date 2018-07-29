@@ -4,8 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/types.h> 
-#include <sys/stat.h> 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/select.h>
 
 #define TEST_SYSFS_TRIGGER  "/sys/hello/trigger"
@@ -13,7 +13,6 @@
 
 int main (void)
 {
-
     fd_set read_fds;
     int i, max_fd, ret, cnt;
     int notify_fd, trigger_fd;
@@ -30,13 +29,13 @@ int main (void)
         exit(1);
     }
 
-    FD_SET (notify_fd, &read_fds);
-    FD_SET (trigger_fd, &read_fds);
+    FD_SET(notify_fd, &read_fds);
+    FD_SET(trigger_fd, &read_fds);
     max_fd = notify_fd > trigger_fd ? notify_fd : trigger_fd;
 
     /* We first need to read data until the end of the file */
-    cnt = read( notify_fd, attrData, 100 );
-    cnt = read( trigger_fd, attrData, 100 );
+    cnt = read(notify_fd, attrData, 100);
+    cnt = read(trigger_fd, attrData, 100);
 
     ret = select(max_fd + 1, NULL, NULL, &read_fds, NULL);
     if (ret < 0)
@@ -46,8 +45,8 @@ int main (void)
     if (FD_ISSET(trigger_fd, &read_fds))
         printf("Change detected in /sys/hello/trigger\n");
 
-    close( trigger_fd );
-    close( notify_fd );
+    close(trigger_fd);
+    close(notify_fd);
     return 0;
 }
 

@@ -15,7 +15,7 @@ static inline unsigned long timespec_to_ulong(struct timespec *ts)
 	return ts->tv_nsec < NSEC_PER_SEC/2 ? ts->tv_sec : ts->tv_sec + 1;
 }
 
-static inline void get_uptime(struct timespec* ts)
+static inline void get_uptime(struct timespec *ts)
 {
 	getrawmonotonic(ts);
 }

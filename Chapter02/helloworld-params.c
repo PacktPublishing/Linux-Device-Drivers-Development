@@ -12,9 +12,9 @@ module_param(myint, int, S_IRUGO);
 module_param(mystr, charp, S_IRUGO);
 module_param_array(myarr, int,NULL, S_IWUSR|S_IRUSR);
 
-MODULE_PARM_DESC(myint,"this is my int variable");
-MODULE_PARM_DESC(mystr,"this is my char pointer variable");
-MODULE_PARM_DESC(myarr,"this is my array of int");
+MODULE_PARM_DESC(myint, "this is my int variable");
+MODULE_PARM_DESC(mystr, "this is my char pointer variable");
+MODULE_PARM_DESC(myarr, "this is my array of int");
 MODULE_INFO(my_field_name, "What eeasy value");
 
 static int __init hellowolrd_init(void) {

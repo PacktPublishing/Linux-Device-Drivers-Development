@@ -5,30 +5,30 @@
 
 static struct timer_list my_timer;
 
-void my_timer_callback( unsigned long data )
+void my_timer_callback(unsigned long data)
 {
-    pr_info( "%s called (%ld).\n", __FUNCTION__, jiffies );
+    pr_info("%s called (%ld).\n", __FUNCTION__, jiffies);
 }
- 
-static int __init my_init( void )
+
+static int __init my_init(void)
 {
     int retval;
     pr_info("Timer module loaded\n");
 
-    setup_timer( &my_timer, my_timer_callback, 0 );
-    pr_info( "Setup timer to fire in 300ms (%ld)\n", jiffies );
+    setup_timer(&my_timer, my_timer_callback, 0);
+    pr_info("Setup timer to fire in 300ms (%ld)\n", jiffies);
 
-    retval = mod_timer( &my_timer, jiffies + msecs_to_jiffies(300) );
+    retval = mod_timer(&my_timer, jiffies + msecs_to_jiffies(300));
     if (retval)
         pr_info("Timer firing failed\n");
- 
+
     return 0;
 }
- 
-static void my_exit( void )
+
+static void my_exit(void)
 {
     int retval;
-    retval = del_timer( &my_timer );
+    retval = del_timer(&my_timer);
     if (retval)
         pr_info("The timer is still in use...\n");
 

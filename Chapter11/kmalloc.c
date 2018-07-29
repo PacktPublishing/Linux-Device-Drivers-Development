@@ -8,9 +8,9 @@ static void *ptr;
 static int alloc_init(void)
 {
     size_t size = 1024; /* allocate 1024 bytes */
-    ptr = kmalloc(size,GFP_KERNEL);
+    ptr = kmalloc(size, GFP_KERNEL);
 
-    if(!ptr) {
+    if (!ptr) {
         /* handle error */
         pr_err("memory allocation failed\n");
         return -ENOMEM;

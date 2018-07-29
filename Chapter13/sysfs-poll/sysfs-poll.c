@@ -22,7 +22,7 @@ static struct d_attr trigger = {
     .value = 0,
 };
 
-static struct attribute * d_attrs[] = {
+static struct attribute *d_attrs[] = {
     &notify.attr,
     &trigger.attr,
     NULL
@@ -43,11 +43,11 @@ static ssize_t store(struct kobject *kobj, struct attribute *attr, const char *b
     sscanf(buf, "%d", &da->value);
     pr_info("sysfs_notify store %s = %d\n", da->attr.name, da->value);
 
-    if (strcmp(da->attr.name, "notify") == 0){
+    if (strcmp(da->attr.name, "notify") == 0) {
         notify.value = da->value;
         sysfs_notify(mykobj, NULL, "notify");
     }
-    else if(strcmp(da->attr.name, "trigger") == 0){
+    else if (strcmp(da->attr.name, "trigger") == 0) {
         trigger.value = da->value;
         sysfs_notify(mykobj, NULL, "trigger");
     }

@@ -34,7 +34,7 @@ static const struct of_device_id fake_gpiochip_ids[] = {
     { /* sentinel */ }
 };
 
-static int my_pdrv_probe (struct platform_device *pdev)
+static int my_pdrv_probe(struct platform_device *pdev)
 {
 	chip.label = pdev->name;
 	chip.base = -1;
