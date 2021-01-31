@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     ufds[0].revents = 0;
     ufds[1].revents = 0;
 
-    if (( rv = poll( ufds, 2, 1000000)) < 0 ) {
+    if (( rv = poll( ufds, 2, 1000000)) < 0 )
         perror("poll error");
     else if (rv == 0)
         printf("Timeout occurred!\n");
