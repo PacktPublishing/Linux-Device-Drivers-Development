@@ -7,10 +7,12 @@ All of the code is organized into folders. Each folder starts with a number foll
 
 The code will look like the following:
 
+```
 struct platform_device_id { 
    char name[PLATFORM_NAME_SIZE]; 
    kernel_ulong_t driver_data; 
 };
+```
 
 Linux kernel is a complex, portable, modular and widely used piece of software, running on around 80% of servers and embedded systems in more than half of devices throughout the World. Device drivers play a critical role in how well a Linux system performs. As Linux has turned out to be one of the most popular operating systems used, the interest in developing proprietary device drivers is also increasing steadily.
 
