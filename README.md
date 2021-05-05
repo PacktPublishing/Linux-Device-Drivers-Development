@@ -18,6 +18,19 @@ This book will initially help you understand the basics of drivers as well as pr
 
 By the end of this book, you will be comfortable with the concept of device driver development and will be in a position to write any device driver from scratch using the latest kernel version (v4.13 at the time of writing this book).
 
+## Errata
+
+* Page number 75 (Chapter 3): The following code 
+```
+msleep(2000);
+wake_up_interruptible(&my_data->my_wq);
+ ``` 
+should include an extra line of code in between as shown here:
+```
+msleep(2000);
+sleep = 1;
+wake_up_interruptible(&my_data->my_wq);
+ ``` 
 
 ## Related Products
 * [Linux: Embedded Development](https://www.packtpub.com/application-development/linux-embedded-development?utm_source=github&utm_medium=repository&utm_campaign=9781787124202)
