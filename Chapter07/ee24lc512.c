@@ -10,7 +10,7 @@
 #include <linux/mutex.h>
 #include <linux/i2c.h>
 #include <linux/delay.h>
-#include <asm/uaccess.h>
+#include <linux/uaccess.h>
 
 
 /* 
