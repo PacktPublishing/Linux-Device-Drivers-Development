@@ -9,27 +9,27 @@ static unsigned int major; /* major number for device */
 static struct class *dummy_class;
 static struct cdev dummy_cdev;
 
-int dummy_open(struct inode * inode, struct file * filp)
+int dummy_open(struct inode *inode, struct file *filp)
 {
     pr_info("Someone tried to open me\n");
     return 0;
 }
 
-int dummy_release(struct inode * inode, struct file * filp)
+int dummy_release(struct inode *inode, struct file *filp)
 {
     pr_info("Someone closed me\n");
     return 0;
 }
 
-ssize_t dummy_read (struct file *filp, char __user * buf, size_t count,
-                                loff_t * offset)
+ssize_t dummy_read(struct file *filp, char __user *buf, size_t count,
+                                loff_t *offset)
 {
     pr_info("Nothing to read guy\n");
     return 0;
 }
 
-ssize_t dummy_write(struct file * filp, const char __user * buf, size_t count,
-                                loff_t * offset)
+ssize_t dummy_write(struct file *filp, const char __user *buf, size_t count,
+                                loff_t *offset)
 {
     pr_info("Can't accept any data guy\n");
     return count;
@@ -44,7 +44,7 @@ struct file_operations dummy_fops = {
 
 static int my_pdrv_probe (struct platform_device *pdev)
 {
-        struct device *dummy_device;
+    struct device *dummy_device;
     int error;
     dev_t devt = 0;
 
@@ -55,7 +55,7 @@ static int my_pdrv_probe (struct platform_device *pdev)
         return error;
     }
     major = MAJOR(devt);
-    pr_info("dummy_char major number = %d\n",major);
+    pr_info("dummy_char major number = %d\n", major);
 
     /* Create device class, visible in /sys/class */
     dummy_class = class_create(THIS_MODULE, "dummy_char_class");

@@ -54,11 +54,11 @@ static const struct of_device_id iio_dummy_ids[] = {
 
 static const struct iio_info fake_iio_info = {
 	.read_raw = fake_read_raw,
-	.write_raw		= fake_write_raw,
+	.write_raw = fake_write_raw,
 	.driver_module = THIS_MODULE,
 };
 
-static int my_pdrv_probe (struct platform_device *pdev)
+static int my_pdrv_probe(struct platform_device *pdev)
 {
 	struct iio_dev *indio_dev;
 	struct my_private_data *data;
@@ -96,7 +96,7 @@ static struct platform_driver mypdrv = {
 	.remove     = my_pdrv_remove,
 	.driver     = {
 		.name     = "iio-dummy-random",
-		.of_match_table = of_match_ptr(iio_dummy_ids),  
+		.of_match_table = of_match_ptr(iio_dummy_ids),
 		.owner    = THIS_MODULE,
 	},
 };

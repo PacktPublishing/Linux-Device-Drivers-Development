@@ -4,8 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/types.h> 
-#include <sys/stat.h> 
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <poll.h>
 
 #define TEST_SYSFS_TRIGGER  "/sys/hello/trigger"
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     char attrData[100];
     struct pollfd ufds[2];
 
-    if ((notify_fd = open(TEST_SYSFS_NOTIFY, O_RDWR)) < 0){
+    if ((notify_fd = open(TEST_SYSFS_NOTIFY, O_RDWR)) < 0) {
         perror("Unable to open notify");
         exit(1);
     }
@@ -32,20 +32,20 @@ int main(int argc, char **argv)
     ufds[1].fd = trigger_fd;
     ufds[1].events = POLLPRI|POLLERR;
 
-    cnt = read( notify_fd, attrData, 100 );
-    cnt = read( trigger_fd, attrData, 100 );
+    cnt = read(notify_fd, attrData, 100);
+    cnt = read(trigger_fd, attrData, 100);
     ufds[0].revents = 0;
     ufds[1].revents = 0;
 
-    if (( rv = poll( ufds, 2, 1000000)) < 0 ) {
+    if ((rv = poll( ufds, 2, 1000000)) < 0) {
         perror("poll error");
     else if (rv == 0)
         printf("Timeout occurred!\n");
     else
         printf("triggered\n");
-    
-    printf( "revents[0]: %08X\n", ufds[0].revents );
-    printf( "revents[1]: %08X\n", ufds[1].revents );
-    close( trigger_fd );
-    close( notify_fd );
+
+    printf("revents[0]: %08X\n", ufds[0].revents);
+    printf("revents[1]: %08X\n", ufds[1].revents);
+    close(trigger_fd);
+    close(notify_fd);
 }

@@ -51,22 +51,22 @@ static int isl6271a_set_voltage_sel(struct regulator_dev *dev,
 
 
 static struct regulator_ops dummy_fixed_ops = {
-    .list_voltage   = regulator_list_voltage_linear,
+    .list_voltage = regulator_list_voltage_linear,
 };
 
 
 static struct regulator_ops dummy_core_ops = {
     .get_voltage_sel = isl6271a_get_voltage_sel,
     .set_voltage_sel = isl6271a_set_voltage_sel,
-    .list_voltage   = regulator_list_voltage_linear,
-    .map_voltage    = regulator_map_voltage_linear,
+    .list_voltage    = regulator_list_voltage_linear,
+    .map_voltage     = regulator_map_voltage_linear,
 };
 
 
 static const struct regulator_desc dummy_desc[] = {
     {
         .name       = "Dummy Core",
-        .id     = 0,
+        .id         = 0,
         .n_voltages = 16,
         .ops        = &dummy_core_ops,
         .type       = REGULATOR_VOLTAGE,
@@ -84,7 +84,7 @@ static const struct regulator_desc dummy_desc[] = {
     },
 };
 
-static int my_pdrv_probe (struct platform_device *pdev)
+static int my_pdrv_probe(struct platform_device *pdev)
 {
 
     struct regulator_config config = { };
@@ -120,7 +120,7 @@ static struct platform_driver mypdrv = {
     .remove     = my_pdrv_remove,
     .driver     = {
         .name     = "regulator-dummy",
-        .of_match_table = of_match_ptr(regulator_dummy_ids),  
+        .of_match_table = of_match_ptr(regulator_dummy_ids),
         .owner    = THIS_MODULE,
     },
 };

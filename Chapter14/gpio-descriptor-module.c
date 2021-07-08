@@ -11,8 +11,8 @@
  *
  *    foo_device {
  *       compatible = "packt,gpio-descriptor-sample";
- *       led-gpios = <&gpio2 15 GPIO_ACTIVE_HIGH>, // red 
- *                   <&gpio2 16 GPIO_ACTIVE_HIGH>, // green 
+ *       led-gpios = <&gpio2 15 GPIO_ACTIVE_HIGH>, // red
+ *                   <&gpio2 16 GPIO_ACTIVE_HIGH>, // green
  *
  *       btn1-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
  *       btn2-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
@@ -41,7 +41,7 @@ static const struct of_device_id gpiod_dt_ids[] = {
 };
 
 
-static int my_pdrv_probe (struct platform_device *pdev)
+static int my_pdrv_probe(struct platform_device *pdev)
 {
     int retval;
     struct device *dev = &pdev->dev;
@@ -94,7 +94,7 @@ static struct platform_driver mypdrv = {
     .remove     = my_pdrv_remove,
     .driver     = {
         .name     = "gpio_descriptor_sample",
-        .of_match_table = of_match_ptr(gpiod_dt_ids),  
+        .of_match_table = of_match_ptr(gpiod_dt_ids),
         .owner    = THIS_MODULE,
     },
 };

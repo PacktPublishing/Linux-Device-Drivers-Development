@@ -56,8 +56,8 @@ static int polled_btn_probe(struct platform_device *pdev)
 
     /* We assume this GPIO is active high */
     priv->btn_gpiod = gpiod_get(&pdev->dev, "button", GPIOD_IN);
-    
-    poll_dev->private = priv ;
+
+    poll_dev->private = priv;
     poll_dev->poll_interval = 200; /* Poll every 200ms */
     poll_dev->poll = polled_btn_poll;
     poll_dev->open = polled_btn_open;
@@ -98,7 +98,7 @@ static struct platform_driver mypdrv = {
     .remove     = polled_btn_remove,
     .driver     = {
         .name     = "input-polled-button",
-        .of_match_table = of_match_ptr(btn_dt_ids),  
+        .of_match_table = of_match_ptr(btn_dt_ids),
         .owner    = THIS_MODULE,
     },
 };

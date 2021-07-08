@@ -36,7 +36,7 @@ struct completion dma_m2m_ok;
  * size.
  *
  */
-#define SDMA_BUF_SIZE  1024
+#define SDMA_BUF_SIZE 1024
 
 static bool dma_m2m_filter(struct dma_chan *chan, void *param)
 {
@@ -46,7 +46,7 @@ static bool dma_m2m_filter(struct dma_chan *chan, void *param)
     return true;
 }
 
-int sdma_open(struct inode * inode, struct file * filp)
+int sdma_open(struct inode *inode, struct file *filp)
 {
     dma_cap_mask_t dma_m2m_mask;
     struct imx_dma_data m2m_dma_data = {0};
@@ -68,13 +68,13 @@ int sdma_open(struct inode * inode, struct file * filp)
 	}
 
     wbuf = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!wbuf) {
+    if (!wbuf) {
         pr_err("error wbuf !!!!!!!!!!!\n");
         return -1;
     }
 
     rbuf = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!rbuf) {
+    if (!rbuf) {
         pr_err("error rbuf !!!!!!!!!!!\n");
         return -1;
     }
@@ -82,7 +82,7 @@ int sdma_open(struct inode * inode, struct file * filp)
     return 0;
 }
 
-int sdma_release(struct inode * inode, struct file * filp)
+int sdma_release(struct inode *inode, struct file *filp)
 {
     dma_release_channel(dma_m2m_chan);
     dma_m2m_chan = NULL;
@@ -91,8 +91,8 @@ int sdma_release(struct inode * inode, struct file * filp)
     return 0;
 }
 
-ssize_t sdma_read (struct file *filp, char __user * buf, size_t count,
-                                loff_t * offset)
+ssize_t sdma_read(struct file *filp, char __user *buf, size_t count,
+                                loff_t *offset)
 {
     int i;
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,0,35))
@@ -111,11 +111,11 @@ static void dma_m2m_callback(void *data)
 {
     pr_info("in %s\n",__func__);
     complete(&dma_m2m_ok);
-    return ;
+    return;
 }
 
-ssize_t sdma_write(struct file * filp, const char __user * buf, size_t count,
-                                loff_t * offset)
+ssize_t sdma_write(struct file *filp, const char __user *buf, size_t count,
+                                loff_t *offset)
 {
     u32 *index, i;
     struct dma_slave_config dma_m2m_config = {0};
@@ -150,7 +150,7 @@ ssize_t sdma_write(struct file * filp, const char __user * buf, size_t count,
     /* 4- Submit the transaction */
     cookie = dmaengine_submit(dma_m2m_desc);
     pr_info("Got this cookie: %d\n", cookie);
- 
+
     /* 5- Issue pending DMA requests and wait for callback notification */
     dma_async_issue_pending(dma_m2m_chan);
     pr_info("waiting for DMA transaction...\n");

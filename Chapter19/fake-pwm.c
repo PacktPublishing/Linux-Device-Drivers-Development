@@ -22,7 +22,7 @@ static int fake_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
 	 * One may need to do some initialization when a PWM channel
 	 * of the controller is requested. This should be done here.
 	 *
-	 * One may do something like 
+	 * One may do something like
 	 *     prepare_pwm_device(struct pwm_chip *chip, pwm->hwpwm);
 	 */
 
@@ -52,7 +52,7 @@ static int fake_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
      *
      * return foo_chip_set_pwm_enable(priv, pwm->hwpwm, true);
      */
-    
+
     pr_info("Somebody enabled PWM device number %d of this chip", pwm->hwpwm);
 	return 0;
 }
@@ -65,7 +65,7 @@ static void fake_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
      *
      * return foo_chip_set_pwm_enable(priv, pwm->hwpwm, false);
      */
-    
+
     pr_info("Somebody disabled PWM device number %d of this chip", pwm->hwpwm);
 }
 
@@ -89,7 +89,7 @@ static int fake_pwm_probe(struct platform_device *pdev)
 	priv->chip.ops = &fake_pwm_ops;
 	priv->chip.dev = &pdev->dev;
 	priv->chip.base = -1;   /* Dynamic base */
-	priv->chip.npwm = 3;    /* 3 channel controller */ 
+	priv->chip.npwm = 3;    /* 3 channel controller */
 
 	platform_set_drvdata(pdev, priv);
 	return pwmchip_add(&priv->chip);
