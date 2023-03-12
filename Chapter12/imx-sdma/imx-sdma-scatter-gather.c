@@ -51,7 +51,7 @@ static bool dma_m2m_filter(struct dma_chan *chan, void *param)
     return true;
 }
 
-int sdma_open(struct inode * inode, struct file * filp)
+int sdma_open(struct inode *inode, struct file *filp)
 {
     dma_cap_mask_t dma_m2m_mask;
     struct imx_dma_data m2m_dma_data = {0};
@@ -74,37 +74,37 @@ int sdma_open(struct inode * inode, struct file * filp)
 	}
 
     wbuf = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!wbuf) {
+    if (!wbuf) {
         pr_info("error wbuf !!!!!!!!!!!\n");
         return -1;
     }
 
     wbuf2 = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!wbuf2) {
+    if (!wbuf2) {
         pr_info("error wbuf2 !!!!!!!!!!!\n");
         return -1;
     }
 
     wbuf3 = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!wbuf3) {
+    if (!wbuf3) {
         pr_info("error wbuf3 !!!!!!!!!!!\n");
         return -1;
     }
 
     rbuf = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!rbuf) {
+    if (!rbuf) {
         pr_info("error rbuf !!!!!!!!!!!\n");
         return -1;
     }
 
     rbuf2 = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!rbuf2) {
+    if (!rbuf2) {
         pr_info("error rbuf2 !!!!!!!!!!!\n");
         return -1;
     }
 
     rbuf3 = kzalloc(SDMA_BUF_SIZE, GFP_DMA);
-    if(!rbuf3) {
+    if (!rbuf3) {
         pr_info("error rbuf3 !!!!!!!!!!!\n");
         return -1;
     }
@@ -112,7 +112,7 @@ int sdma_open(struct inode * inode, struct file * filp)
     return 0;
 }
 
-int sdma_release(struct inode * inode, struct file * filp)
+int sdma_release(struct inode *inode, struct file *filp)
 {
     dma_release_channel(dma_m2m_chan);
     dma_m2m_chan = NULL;
@@ -125,8 +125,8 @@ int sdma_release(struct inode * inode, struct file * filp)
     return 0;
 }
 
-ssize_t sdma_read (struct file *filp, char __user * buf, size_t count,
-                                loff_t * offset)
+ssize_t sdma_read(struct file *filp, char __user *buf, size_t count,
+                                loff_t *offset)
 {
     int i;
 
@@ -164,8 +164,8 @@ static void dma_m2m_callback(void *data)
     return ;
 }
 
-ssize_t sdma_write(struct file * filp, const char __user * buf, size_t count,
-                                loff_t * offset)
+ssize_t sdma_write(struct file *filp, const char __user *buf, size_t count,
+                                loff_t *offset)
 {
     u32 *index1, *index2, *index3, i, ret;
     struct dma_slave_config dma_m2m_config = {0};

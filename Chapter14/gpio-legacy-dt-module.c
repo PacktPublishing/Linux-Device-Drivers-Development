@@ -13,8 +13,8 @@
  *
  *    foo_device {
  *       compatible = "packt,gpio-legacy-sample";
- *       led-gpios = <&gpio2 15 GPIO_ACTIVE_HIGH>, // red 
- *                   <&gpio2 16 GPIO_ACTIVE_HIGH>, // green 
+ *       led-gpios = <&gpio2 15 GPIO_ACTIVE_HIGH>, // red
+ *                   <&gpio2 16 GPIO_ACTIVE_HIGH>, // green
  *
  *       btn1-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
  *       btn2-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
@@ -42,7 +42,7 @@ static const struct of_device_id gpio_dt_ids[] = {
     { /* sentinel */ }
 };
 
-static int my_pdrv_probe (struct platform_device *pdev)
+static int my_pdrv_probe(struct platform_device *pdev)
 {
     int retval;
     struct device_node *np = pdev->dev.of_node;
@@ -106,7 +106,7 @@ static struct platform_driver mypdrv = {
     .remove     = my_pdrv_remove,
     .driver     = {
         .name     = "gpio_legacy_sample",
-        .of_match_table = of_match_ptr(gpio_dt_ids),  
+        .of_match_table = of_match_ptr(gpio_dt_ids),
         .owner    = THIS_MODULE,
     },
 };

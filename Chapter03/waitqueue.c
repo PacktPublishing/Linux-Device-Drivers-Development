@@ -3,7 +3,7 @@
 #include <linux/sched.h>
 #include <linux/time.h>
 #include <linux/delay.h>
-#include<linux/workqueue.h>
+#include <linux/workqueue.h>
 
 static DECLARE_WAIT_QUEUE_HEAD(my_wq);
 static int condition = 0;
@@ -12,7 +12,7 @@ static int condition = 0;
 static struct work_struct wrk;
 
 static void work_handler(struct work_struct *work)
-{ 
+{
     pr_info("Waitqueue module handler %s\n", __FUNCTION__);
     msleep(3000);
     pr_info("Wake up the sleeping module\n");

@@ -32,7 +32,7 @@ static int fake_eth_release(struct net_device *dev) {
     return 0;
 }
 
-static int fake_eth_xmit(struct sk_buff *skb, struct net_device *ndev) {    
+static int fake_eth_xmit(struct sk_buff *skb, struct net_device *ndev) {
     pr_info("dummy xmit called...\n");
     ndev->stats.tx_bytes += skb->len;
     ndev->stats.tx_packets++;
@@ -78,7 +78,7 @@ static int fake_eth_probe(struct platform_device *pdev)
     dummy_ndev = alloc_etherdev(sizeof(struct eth_struct));
     dummy_ndev->if_port = IF_PORT_10BASET;
     dummy_ndev->netdev_ops = &my_netdev_ops;
-    
+
     /* If needed, dev->ethtool_ops = &fake_ethtool_ops; */
 
     ret = register_netdev(dummy_ndev);
@@ -109,7 +109,7 @@ static struct platform_driver mypdrv = {
     .remove     = fake_eth_remove,
     .driver     = {
         .name     = "fake-eth",
-        .of_match_table = of_match_ptr(fake_eth_dt_ids),  
+        .of_match_table = of_match_ptr(fake_eth_dt_ids),
         .owner    = THIS_MODULE,
     },
 };
